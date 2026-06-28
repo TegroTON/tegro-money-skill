@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Compile
+        run: python -m py_compile scripts/tegro.py
+      - name: Smoke (no key -> exits non-zero with a clear message)
+        run: |
+          if python3 scripts/tegro.py balance; then
+            echo "expected non-zero exit without TEGRO_API_KEY"; exit 1
+          fi
+          python3 scripts/tegro.py balance 2>&1 | grep -q "TEGRO_API_KEY is not set"
