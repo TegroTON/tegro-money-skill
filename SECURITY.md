@@ -6,5 +6,5 @@
   request body locally; only the signature is sent. The key is never printed or transmitted.
 - **No bundled secrets.** Credentials come exclusively from environment variables you control.
 
-Report vulnerabilities privately to **security@tegro.money** (don't open a public issue).
+Report vulnerabilities privately via **Security → Report a vulnerability** in this repository (don't open a public issue).
 We aim to respond within 72 hours.
